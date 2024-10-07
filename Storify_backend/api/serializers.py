@@ -121,3 +121,14 @@ def create(self, validated_data):
         AssociatedService.objects.create(composite=[composite_item, service_data])
 
     return composite_item
+# =================================================================================================
+from rest_framework import serializers
+from .models import Bill
+
+class BillSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Bill
+        fields = ['id', 'user', 'vendor', 'bill_number', 'order_number', 'bill_date',
+                  'due_date', 'payment_terms', 'subject', 'total_amount', 
+                  'customer_notes', 'terms', 'created_at']
+        read_only_fields = ['id', 'user', 'created_at']

@@ -53,8 +53,7 @@ import Invoice_form from './Components/Dashboard/Sales/Invoice_form';
 import Active_items from './Components/Dashboard/Active_items';
 import Returnable_items from './Components/Dashboard/Returnable_items';
 // import PurchaseOrder from './Components/Dashboard/PurchaseOrder';
-
-
+import ActiveBills from './Components/Dashboard/ActiveBills';
 // Set up Axios interceptor for auth token
 axios.interceptors.request.use(
   (config) => {
@@ -133,6 +132,7 @@ const App = () => {
                 <Route path="/dashboard/active_items" element={<Active_items />} />
                 <Route path="/dashboard/returnable_items" element={<Returnable_items />} />
                 <Route path="/dashboard/nonreturnable_items" element={<Nonreturn />} />
+                <Route path="/dashboard/activebills" element={<ActiveBills />} />
 
                 <Route path="/dashboard/dashboardmainview" element={<DashboardMainView />} />
                 <Route path="/dashboard/inventory" element={<ExpenseForm />} />

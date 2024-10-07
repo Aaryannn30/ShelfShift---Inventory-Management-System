@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import DatePicker from "react-flatpickr";
 import { FaQuestionCircle, FaPlus, FaUpload, FaMoneyBillWave, FaSearch, FaTable } from 'react-icons/fa';
 import "flatpickr/dist/themes/material_blue.css"; // Import a theme for the date picker
-
+import { Link } from "react-router-dom";
 function Bills() {
     const [vendor, setVendor] = useState("");
     const [vendorSearch, setVendorSearch] = useState("");
@@ -50,6 +50,7 @@ function Bills() {
                 <h1 className="text-3xl font-bold text-blue-700 ml-2">Create New Bill</h1>
             </div>
             <div className="shadow-lg rounded-lg p-8 bg-white">
+                {/* Vendor Selection */}
                 <div className="mb-4">
                     <label className="block text-blue-600 font-bold mb-2">Vendor Name*</label>
                     <div className="flex items-center">
@@ -81,6 +82,7 @@ function Bills() {
                         </ul>
                     )}
                 </div>
+                {/* Bill Information */}
                 <div className="grid grid-cols-2 gap-4 mb-4">
                     <div>
                         <label className="block text-blue-600 font-bold mb-2">Bill#*</label>
@@ -139,7 +141,7 @@ function Bills() {
                     </div>
                 </div>
                 <div className="mb-4">
-                    <label className="block text-gray-600 font-bold mb-2">Subject <i className="fas fa-info-circle text-gray-400"></i></label>
+                    <label className="block text-gray-600 font-bold mb-2">Subject <FaQuestionCircle className="inline text-gray-400" /></label>
                     <input
                         type="text"
                         placeholder="Enter a subject within 250 characters"
@@ -149,7 +151,8 @@ function Bills() {
                     />
                 </div>
             </div>
-            
+
+            {/* Item Table */}
             <div className="my-6 flex items-center">
                 <FaTable className="text-lg text-blue-600" />
                 <h2 className="text-gray-800 font-semibold text-xl ml-2">Item Table</h2>
@@ -226,6 +229,7 @@ function Bills() {
                 </div>
             </div>
 
+            {/* File Upload */}
             <div className="my-6 flex items-center">
                 <FaUpload className="text-lg text-blue-600" />
                 <h2 className="text-gray-800 font-semibold text-xl ml-2">Upload Files</h2>
@@ -244,6 +248,7 @@ function Bills() {
                 </ul>
             </div>
 
+            {/* Customer Notes */}
             <div className="mb-6">
                 <label className="block text-gray-600 font-bold mb-2">Customer Notes</label>
                 <textarea
@@ -255,6 +260,7 @@ function Bills() {
                 ></textarea>
             </div>
 
+            {/* Terms and Conditions */}
             <div className="mb-6">
                 <label className="block text-gray-600 font-bold mb-2">Terms</label>
                 <textarea
@@ -266,9 +272,13 @@ function Bills() {
                 ></textarea>
             </div>
 
+            {/* Action Buttons */}
             <div className="flex justify-between mt-6">
                 <button className="bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400 transition">Cancel</button>
                 <button className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition">Save Bill</button>
+                <Link to='/dashboard/activebills'>
+                <button className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition">View Bill</button>
+                </Link>
             </div>
         </div>
     );

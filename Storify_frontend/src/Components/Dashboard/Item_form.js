@@ -205,8 +205,7 @@ const ItemForm = () => {
                 value={name}
                 required
                 
-                onChange={(e) => setName(e.target.value)}
-              required/>
+                onChange={(e) => setName(e.target.value)} />
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700">SKU</label>

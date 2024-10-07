@@ -29,7 +29,7 @@ import Returnable_items from './Returnable_items.js';
 import Nonreturn from './Nonreturn.js';
 import Active_items from './Active_items.js';
 import DashboardMainView from './DashboardMainView.js';
-
+import ActiveBills from './ActiveBills.js';
 const DView = () => {
     return (
         <div className="flex-grow bg-slate-500 dark:bg-slate-900">
@@ -65,6 +65,7 @@ const DView = () => {
                 <Route path="/active_items" element={<Active_items />} />
                 <Route path="/returnable_items" element={<Returnable_items />} />
                 <Route path="/nonreturnable_items" element={<Nonreturn />} />
+                <Route path="/activebills" element={<ActiveBills />} />
 
                 <Route path="/dashboardmainview" element={<DashboardMainView />} />
                 <Route path="/inventory" element={<ExpenseForm />} />

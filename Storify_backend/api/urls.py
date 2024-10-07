@@ -1,7 +1,8 @@
 from django.urls import path
 from . import views
 from .views import PriceListCreateView
-
+from django.urls import path
+from .views import BillListCreateView, BillDetailView
 from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
@@ -29,6 +30,8 @@ urlpatterns = [
     path('pricelist/<int:user_id>', views.ShowPriceListItem, name='pricelist_items'),
     path('group_item/new/<int:user_id>', views.ItemGroupCreateView.as_view(), name='grouplist_items'),
     path('group_item/<int:user_id>', views.ItemGroupCreateView.as_view(), name='grouplist_items'),
+    path('api/bills/', BillListCreateView.as_view(), name='bill-list-create'),
+    path('api/bills/<int:pk>/', BillDetailView.as_view(), name='bill-detail'),
     # path('item/<int:pk>/edit/', views.ItemUpdateView.as_view(), name='item_update'),  # Update an existing item
     # path('item/<int:pk>/delete/', views.ItemDeleteView.as_view(), name='item_delete'),  # Delete an item
 ]

@@ -176,3 +176,42 @@ class AssociatedService(models.Model):
 from django.db import models
 from django.contrib.auth.models import User
 
+# ======================================================================================
+
+from django.db import models
+from django.contrib.auth import get_user_model
+
+User = get_user_model()  # This will get the custom user model if defined
+
+class Bill(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    vendor = models.CharField(max_length=255)
+    bill_number = models.CharField(max_length=50)
+    order_number = models.CharField(max_length=50, blank=True)
+    bill_date = models.DateField()
+    due_date = models.DateField()
+    payment_terms = models.CharField(max_length=100)
+    subject = models.CharField(max_length=250, blank=True)
+    total_amount = models.DecimalField(max_digits=10, decimal_places=2)
+    customer_notes = models.TextField(blank=True)
+    terms = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.bill_number  
+
+# ==============================================================================================================
+from django.db import models
+
+class Expense(models.Model):
+    date = models.DateField()
+    category = models.CharField(max_length=100)
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    vendor = models.CharField(max_length=100, blank=True, null=True)
+    invoice = models.CharField(max_length=100, blank=True, null=True)
+    notes = models.TextField(blank=True, null=True)
+    customer = models.CharField(max_length=100, blank=True, null=True)
+    file = models.FileField(upload_to='receipts/', blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.category} - {self.amount}"

@@ -182,3 +182,32 @@ class CompositeItemListCreateView(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
+# ====================================================================================================
+from rest_framework import generics
+from rest_framework.permissions import IsAuthenticated
+from .models import Bill
+from .serializers import BillSerializer
+
+class BillListCreateView(generics.ListCreateAPIView):
+    serializer_class = BillSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        # Filter bills to only include those for the authenticated user
+        return Bill.objects.filter(user=self.request.user)
+
+    def perform_create(self, serializer):
+        # Save the bill with the user set to the authenticated user
+        serializer.save(user=self.request.user)
+
+
+class BillDetailView(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = BillSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        # Filter bills to only include those for the authenticated user
+        return Bill.objects.filter(user=self.request.user)
+
+    # No need to override the perform_update and perform_destroy unless you need custom logic
+
